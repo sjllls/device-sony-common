@@ -128,8 +128,8 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 # Bluetooth
-PRODUCT_PACKAGES += \
-    libbt-vendor
+#PRODUCT_PACKAGES += \
+#    libbt-vendor
 
 # NFC packages
 PRODUCT_PACKAGES += \
@@ -216,9 +216,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/vendor/lib/librqbalance.so
 
 # APN list
-PRODUCT_COPY_FILES += \
-    device/sample/etc/old-apns-conf.xml:system/etc/old-apns-conf.xml \
-    device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+#PRODUCT_COPY_FILES += \
+#    device/sample/etc/old-apns-conf.xml:system/etc/old-apns-conf.xml \
+#    device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Limit dex2oat threads to improve thermals
 PRODUCT_PROPERTY_OVERRIDES += \
