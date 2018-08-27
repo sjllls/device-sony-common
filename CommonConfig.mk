@@ -71,9 +71,9 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 TARGET_NO_RPC := true
 
 # Charger
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_HAL_STATIC_LIBRARIES += libhealthd.$(TARGET_DEVICE)
+#BOARD_CHARGER_DISABLE_INIT_BLANK := true
+#BOARD_CHARGER_ENABLE_SUSPEND := true
+#BOARD_HAL_STATIC_LIBRARIES += libhealthd.$(TARGET_DEVICE)
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
@@ -102,4 +102,4 @@ BUILD_KERNEL := true
 -include vendor/qcom/proprietary/common/build/proprietary-build.mk
 
 # SELinux
-include device/sony/sepolicy/sepolicy.mk
+#include device/sony/sepolicy/sepolicy.mk
