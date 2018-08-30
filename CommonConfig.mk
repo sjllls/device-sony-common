@@ -81,6 +81,9 @@ EXTENDED_FONT_FOOTPRINT := true
 # Set seccomp policy for media server
 BOARD_SECCOMP_POLICY += $(COMMON_PATH)/seccomp
 
+# Avoid using Sony's init
+BOARD_USES_INIT_SONY := false
+
 # Init configuration for init_sony
 include $(COMMON_PATH)/init/config.mk
 
