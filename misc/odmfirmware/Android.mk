@@ -1,3 +1,4 @@
+$(shell mkdir -p $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/firmware)
 $(shell pushd $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/firmware > /dev/null && ln -s /odm/firmware/a530_gpmu.fw2 a530_gpmu.fw2 && popd > /dev/null)
 $(shell pushd $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/firmware > /dev/null && ln -s /odm/firmware/a530_pfp.fw a530_pfp.fw && popd > /dev/null)
 $(shell pushd $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/firmware > /dev/null && ln -s /odm/firmware/a530_pm4.fw a530_pm4.fw && popd > /dev/null)
