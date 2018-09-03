@@ -109,13 +109,6 @@ service adsprpcd /odm/bin/adsprpcd
    user media
    group media
 
-# Offline charger
-service charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0
-    writepid /dev/cpuset/system-background/tasks
-
 # DSDS second ril
 service ril-daemon2 /system/bin/rild -c 2
     class main
