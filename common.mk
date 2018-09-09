@@ -347,7 +347,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # sdcardFS
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
+    ro.sys.sdcardfs=false
 
 ifneq ($(filter loire tone yoshino,$(SOMC_PLATFORM)),)
 # RILD
