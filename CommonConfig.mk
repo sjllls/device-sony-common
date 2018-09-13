@@ -22,7 +22,7 @@ TARGET_BOARD_AUTO := true
 
 TARGET_NO_RADIOIMAGE := true
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_RECOVERY := false
+TARGET_NO_RECOVERY := true
 TARGET_NO_KERNEL := false
 
 # common cmdline parameters
@@ -87,11 +87,3 @@ endif
 DONT_DEXPREOPT_PREBUILTS := true
 
 BUILD_KERNEL := true
--include device/sony/common-headers/KernelHeaders.mk
--include device/sony/common-kernel/KernelConfig.mk
-
-# Include build helpers for QCOM proprietary
--include vendor/qcom/proprietary/common/build/proprietary-build.mk
-
-# SELinux
-#include device/sony/sepolicy/sepolicy.mk
