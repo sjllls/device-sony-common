@@ -48,6 +48,7 @@ service rmt_storage /odm/bin/rmt_storage
 
 # QCOM prop
 service qmuxd /odm/bin/qmuxd
+    setenv LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/odm/lib64
     class main
     user radio
     group radio audio bluetooth wakelock gps nfc diag
