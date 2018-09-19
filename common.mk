@@ -153,7 +153,8 @@ PRODUCT_PACKAGES += \
 
 # QCOM OSS
 PRODUCT_PACKAGES += \
-    librmnetctl
+    librmnetctl \
+    rmnetctl
 
 # QCOM GPS
 PRODUCT_PACKAGES += \
