@@ -151,11 +151,6 @@ PRODUCT_PACKAGES += \
     thermanager \
     macaddrsetup
 
-# QCOM OSS
-PRODUCT_PACKAGES += \
-    librmnetctl \
-    rmnetctl
-
 # QCOM GPS
 PRODUCT_PACKAGES += \
     libloc_api_v02 \
@@ -164,11 +159,6 @@ PRODUCT_PACKAGES += \
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
-
-# AOSP Packages
-PRODUCT_PACKAGES += \
-    Launcher3 \
-    WallpaperPicker
 
 PRODUCT_PACKAGES += \
     libjson \
