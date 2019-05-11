@@ -24,7 +24,7 @@ TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 TARGET_NO_RADIOIMAGE := true
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_RECOVERY := true
+TARGET_NO_RECOVERY := false
 TARGET_NO_KERNEL := false
 
 # Avoid using vold for mounting purposes
@@ -84,7 +84,7 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 TARGET_NO_RPC := true
 
 # Include an expanded selection of fonts
-EXTENDED_FONT_FOOTPRINT := true
+EXTENDED_FONT_FOOTPRINT := false
 
 # Set seccomp policy for media server
 # BOARD_SECCOMP_POLICY += $(COMMON_PATH)/seccomp
