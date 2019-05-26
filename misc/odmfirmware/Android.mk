@@ -1,3 +1,7 @@
+# Symlink to camera HAL
+$(shell mkdir -p $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/lib/hw)
+$(shell pushd $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/lib/hw > /dev/null && ln -s camera.msm8952.so camera.default.so && popd > /dev/null)
+
 # Symlink to audio policy
 $(shell mkdir -p $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/etc)
 $(shell pushd $(PRODUCT_OUT)/$(TARGET_COPY_OUT_VENDOR)/etc > /dev/null && ln -s /system/etc/audio_policy.conf audio_policy.conf && popd > /dev/null)
