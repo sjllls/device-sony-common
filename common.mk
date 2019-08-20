@@ -315,6 +315,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.kpi.debug=0 \
     persist.camera.global.debug=0
 
+# Camera HAL1 support
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
+
 # Disable Dual Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.dual.camera.mpo=0 \
@@ -350,5 +355,17 @@ endif
 # Vendor version
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.version=$(TARGET_VENDOR_VERSION)
+
+#aethercastctl
+PRODUCT_PROPERTY_OVERRIDES += \
+    ubuntu.widi.supported=1
+
+# Multimedia playback support
+PRODUCT_PACKAGES += \
+    libmedia_compat_layer \
+    libubuntu_application_api \
+    libdroidmedia \
+    libui_compat_layer \
+    libsf_compat_layer
 
 PRODUCT_CUSTOM_IMAGE_MAKEFILES := $(COMMON_PATH)/odm.mk
