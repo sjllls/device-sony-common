@@ -27,48 +27,55 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef ANDROID_HARDWARE_POWER_V1_2_POWER_H
-#define ANDROID_HARDWARE_POWER_V1_2_POWER_H
+#define LOG_TAG "android.hardware.power@1.2-service.sony_sm6125"
 
-#include <android/hardware/power/1.2/IPower.h>
-#include <hidl/MQDescriptor.h>
-#include <hidl/Status.h>
+#include <android/log.h>
+#include <hidl/HidlTransportSupport.h>
 #include <hardware/power.h>
+#include "Power.h"
 
-namespace android {
-namespace hardware {
-namespace power {
-namespace V1_2 {
-namespace implementation {
+using android::sp;
+using android::status_t;
+using android::OK;
 
-using ::android::hardware::power::V1_0::Feature;
-using PowerHint_1_0 = ::android::hardware::power::V1_0::PowerHint;
-using PowerHint_1_2 = ::android::hardware::power::V1_2::PowerHint;
-using ::android::hardware::power::V1_2::IPower;
-using ::android::hardware::Return;
-using ::android::hardware::Void;
+// libhwbinder:
+using android::hardware::configureRpcThreadpool;
+using android::hardware::joinRpcThreadpool;
 
-struct Power : public IPower {
-    // Methods from ::android::hardware::power::V1_0::IPower follow.
+// Generated HIDL files
+using android::hardware::power::V1_2::IPower;
+using android::hardware::power::V1_2::implementation::Power;
 
-    Power();
+int main() {
 
-    Return<void> setInteractive(bool interactive) override;
-    Return<void> powerHint(PowerHint_1_0 hint, int32_t data) override;
-    Return<void> setFeature(Feature feature, bool activate) override;
-    Return<void> getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) override;
+    status_t status;
+    android::sp<IPower> service = nullptr;
 
-    // Methods from ::android::hardware::power::V1_1::IPower follow
-    Return<void> getSubsystemLowPowerStats(getSubsystemLowPowerStats_cb _hidl_cb) override;
-    Return<void> powerHintAsync(PowerHint_1_0 hint, int32_t data) override;
-    // Methods from ::android::hardware::power::V1_2::IPower follow
-    Return<void> powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) override;
-};
+    ALOGI("Power HAL Service 1.2 is starting.");
 
-}  // namespace implementation
-}  // namespace V1_2
-}  // namespace power
-}  // namespace hardware
-}  // namespace android
+    service = new Power();
+    if (service == nullptr) {
+        ALOGE("Can not create an instance of Power HAL interface.");
 
-#endif  // ANDROID_HARDWARE_POWER_V1_2_POWER_H
+        goto shutdown;
+    }
+
+    configureRpcThreadpool(1, true /*callerWillJoin*/);
+
+    status = service->registerAsService();
+    if (status != OK) {
+        ALOGE("Could not register service for Power HAL(%d).", status);
+        goto shutdown;
+    }
+
+    ALOGI("Power Service is ready");
+    joinRpcThreadpool();
+    //Should not pass this line
+
+shutdown:
+    // In normal operation, we don't expect the thread pool to exit
+
+    ALOGE("Power Service is shutting down");
+    return 1;
+}
+

@@ -147,7 +147,10 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.sony
+    android.hardware.power@1.2-service.sony_sm6125
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/hardware/power/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 ifeq ($(AB_OTA_UPDATER),true)
 # Boot control

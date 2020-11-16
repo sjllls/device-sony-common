@@ -1,53 +1,47 @@
-# Copyright (C) 2012 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-
 ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
     LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
 endif
-LOCAL_HEADER_LIBRARIES := libhardware_headers
 
-LOCAL_C_INCLUDES := external/expat/lib
-
-LOCAL_MODULE := android.hardware.power@1.3-service.sony
+LOCAL_MODULE := android.hardware.power@1.2-service.sony_sm6125
+LOCAL_INIT_RC := android.hardware.power@1.2-service.sony_sm6125.rc
 LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_PROPRIETARY_MODULE := true
-LOCAL_INIT_RC := android.hardware.power@1.3-service.sony.rc
+LOCAL_MODULE_TAGS := optional
 
-# PowerHAL and HALExtension
+LOCAL_VENDOR_MODULE := true
+
 LOCAL_SRC_FILES := \
-    main.cpp \
+    hint-data.c \
+    list.c \
+    metadata-parser.c \
+    power-6150.c \
+    power-common.c \
+    powerhintparser.c \
     Power.cpp \
-    Hints.cpp \
-    RQBalanceHALExt.cpp \
-    expatparser.c \
-    power-helper.c
+    service.cpp \
+    utils.c
+
+LOCAL_C_INCLUDES := external/libxml2/include \
+                    external/icu/icu4c/source/common
 
 LOCAL_SHARED_LIBRARIES := \
-    liblog \
-    libcutils \
-    libexpat \
-    libdl \
+    android.hardware.power@1.2 \
     libbase \
-    libutils \
-    libhardware \
+    libcutils \
+    libdl \
     libhidlbase \
-    android.hardware.power@1.3
+    libhidltransport \
+    liblog \
+    libutils \
+    libxml2
+
+LOCAL_HEADER_LIBRARIES := libutils_headers
+LOCAL_HEADER_LIBRARIES += libhardware_headers
+
+LOCAL_CFLAGS += -Werror -Wall -Wno-unused-parameter
+LOCAL_CFLAGS += -DINTERACTION_BOOST
 
 include $(BUILD_EXECUTABLE)
-
