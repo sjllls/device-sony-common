@@ -1,0 +1,34 @@
+on init
+    chown system system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chown system system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chown system system /sys/class/kgsl/kgsl-3d0/force_rail_on
+    chown system system /sys/class/kgsl/kgsl-3d0/force_clk_on
+    chown system system /sys/class/kgsl/kgsl-3d0/idle_timer
+    chown system system /dev/stune/top-app/schedtune.boost
+    chown system system /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_trigger_count
+    chown system system /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hist_memory
+    chown system system /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_length
+    chown system system /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/min_freq
+    chown system system /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/early_wakeup
+
+service vendor.power-hal-1-3 /vendor/bin/hw/android.hardware.power@1.3-service.sony_libperfmgr
+    class hal
+    user root
+    group system
+
+# restart powerHAL when framework died
+on property:init.svc.zygote=restarting && property:vendor.powerhal.state=*
+   setprop vendor.powerhal.state ""
+   setprop vendor.powerhal.audio ""
+   setprop vendor.powerhal.rendering ""
+   restart vendor.power-hal-1-3
+
+# restart powerHAL when cameraHAL died
+on property:init.svc.vendor.camera-provider-2-4=restarting && property:vendor.powerhal.state=CAMERA_STREAMING
+   setprop vendor.powerhal.state ""
+   restart vendor.power-hal-1-3
+
+# restart powerHAL when audioHAL died
+on property:init.svc.vendor.audio-hal-2-0=restarting && property:vendor.powerhal.audio=AUDIO_LOW_LATENCY
+   setprop vendor.powerhal.audio ""
+   restart vendor.power-hal-1-3
