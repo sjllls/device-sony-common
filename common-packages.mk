@@ -119,9 +119,11 @@ PRODUCT_PACKAGES += \
     timekeep \
     TimeKeep \
 
+ifeq ($(TARGET_USE_RQBALANCE_HAL),true)
 # OSS Power HAL
 PRODUCT_PACKAGES += \
     librqbalance
+endif
 
 # OSS WIFI and BT MAC tool
 PRODUCT_PACKAGES += \
