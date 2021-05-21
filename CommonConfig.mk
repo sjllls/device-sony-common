@@ -14,6 +14,9 @@
 
 -include device/sony/customization/Customization.mk
 
+#Broken Rules
+BUILD_BROKEN_DUP_RULES := true
+
 # Common path
 COMMON_PATH := device/sony/common
 
